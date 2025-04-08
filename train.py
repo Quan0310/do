@@ -58,13 +58,9 @@ def train(opt):
     training_set = []
     training_generator = []
     training_set.append(COCODataset(opt.data_path, "2014", "train", opt.image_size))
-    training_set.append(COCODataset(opt.data_path, "2014", "val", opt.image_size))
-    training_set.append(COCODataset(opt.data_path, "2017", "train", opt.image_size))
     training_generator.append(DataLoader(training_set[0], **training_params))
-    training_generator.append(DataLoader(training_set[1], **training_params))
-    training_generator.append(DataLoader(training_set[2], **training_params))
 
-    test_set = COCODataset(opt.data_path, "2017", "val", opt.image_size, is_training=False)
+    test_set = COCODataset(opt.data_path, "2014", "val", opt.image_size, is_training=False)
     test_generator = DataLoader(test_set, **test_params)
 
     if torch.cuda.is_available():

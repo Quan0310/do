@@ -98,3 +98,8 @@ class Yolo(nn.Module):
         output = self.stage3_conv2(output)
 
         return output
+    
+if __name__ == "__main__":
+    model = Yolo(num_classes=10)
+    output = model(torch.randn(1, 3, 416, 416))
+    print(output.shape)
